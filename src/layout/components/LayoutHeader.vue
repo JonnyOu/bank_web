@@ -1,12 +1,24 @@
 <script setup>
-import { routerKey } from 'vue-router';
+const router = useRouter();
 const { t } = useI18n();
 
-const selectedMenuKey = ref(['accQuery']);
+const props = defineProps({
+  menuIndex: {
+    type: String,
+    default: 'index'
+  }
+})
+
+const selectedMenuKey = ref([props.menuIndex]);
 const menuHead = [
   {
+    key: 'index',
+    name: t('system.menu.index'),
+    path: '/index',
+  },
+  {
     key: 'accQuery',
-    name: t('system.menu.accInfo'),
+    name: t('system.menu.accQuery'),
     path: '/accQuery',
   },
   {
@@ -21,8 +33,9 @@ const menuHead = [
   },
 ]
 
-const changeRoute = (path) => {
-  router.push();
+const changeRoute = (item) => {
+  router.push({ path: item.path });
+  selectedMenuKey.value[0] = item.key;
 }
 </script>
 
@@ -35,7 +48,7 @@ const changeRoute = (path) => {
         mode="horizontal"
         :style="{ lineHeight: '64px' }"
       >
-        <a-menu-item key="1" v-for="item in menuHead" :key="item.key" @click="changeRoute(item.path)">
+        <a-menu-item v-for="item in menuHead" :key="item.key" @click="changeRoute(item)">
           {{ item.name }}
         </a-menu-item>
       </a-menu>

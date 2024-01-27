@@ -11,6 +11,7 @@ export const transferRoute = {
     title: '转账汇款',
     titleI18nKey: 'menu.transfer',
     icon: 'apps-line',
+    menuIndex: 'transfer'
   },
   children: [
     {

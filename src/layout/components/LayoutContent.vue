@@ -5,11 +5,13 @@ const openKeys = ref(['sub1']);
 
 <template>
   <a-layout-content style="padding: 0 50px">
+    <!-- 路径 -->
     <a-breadcrumb style="margin: 16px 0">
       <a-breadcrumb-item>1</a-breadcrumb-item>
       <a-breadcrumb-item>2</a-breadcrumb-item>
       <a-breadcrumb-item>3</a-breadcrumb-item>
     </a-breadcrumb>
+    <!-- 左侧菜单 -->
     <a-layout style="height: 80vh; padding: 24px 0; background: #fff">
       <a-layout-sider width="200" style="background: #fff">
         <a-menu
@@ -56,6 +58,7 @@ const openKeys = ref(['sub1']);
           </a-sub-menu>
         </a-menu>
       </a-layout-sider>
+      <!-- 展示内容 -->
       <a-layout-content :style="{ padding: '0 24px', minHeight: '280px' }">
         <router-view></router-view>
       </a-layout-content>

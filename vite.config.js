@@ -22,6 +22,9 @@ export default defineConfig(({ command, mode }) => {
       plugins: [
         vue(),
         Components({
+          dirs: [
+            'src/components', 'src/layout', 'src/views'
+          ],
           resolvers: [
             AntDesignVueResolver({
               importStyle: false, 

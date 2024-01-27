@@ -6,17 +6,17 @@ export const accQueryRoute = {
   component: Layout,
   redirect: '/accQuery/accInfo',
   meta: {
-    id: 'settings',
+    id: 'accQuery',
     title: '账户查询',
     titleI18nKey: 'menu.accQuery',
     icon: 'apps-line',
+    menuIndex: 'accQuery'
   },
   children: [
     {
       path: '/accQuery/accInfo',
       name: 'accInfo',
       component: () => import('@/views/accQuery/accInfo'),
-      redirect: '/accQuery/accInfo',
       meta: {
         id: 'accInfo',
         title: '账户概览',
@@ -26,9 +26,8 @@ export const accQueryRoute = {
     },
     {
       path: '/accQuery/operateRecord',
-      name: 'accInfo',
+      name: 'operateRecord',
       component: () => import('@/views/accQuery/operateRecord'),
-      redirect: '/accQuery/operateRecord',
       meta: {
         id: 'operateRecord',
         title: '最近操作记录',
@@ -38,9 +37,8 @@ export const accQueryRoute = {
     },
     {
       path: '/accQuery/transferRecord',
-      name: 'accInfo',
+      name: 'transferRecord',
       component: () => import('@/views/accQuery/transferRecord'),
-      redirect: '/accQuery/transferRecord',
       meta: {
         id: 'transferRecord',
         title: '交易记录',

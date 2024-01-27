@@ -1,10 +1,14 @@
 <script setup>
-  
+
+
 </script>
 
 <template>
   <div>
-    首页
+    <a-layout>
+      <LayoutHeader menuIndex="index" />
+      首页
+    </a-layout>
   </div>  
 </template>
 

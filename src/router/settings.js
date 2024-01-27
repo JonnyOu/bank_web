@@ -10,13 +10,13 @@ export const settingsRoute = {
     title: '设置中心',
     titleI18nKey: 'menu.settings',
     icon: 'apps-line',
+    menuIndex: 'settings'
   },
   children: [
     {
       path: '/settings/phoneService',
       name: 'phoneService',
       component: () => import('@/views/settings/phoneService'),
-      redirect: '/settings/phoneService',
       meta: {
         id: 'phoneService',
         title: '电子渠道手机号服务',
@@ -28,7 +28,6 @@ export const settingsRoute = {
       path: '/settings/resetPassword',
       name: 'resetPassword',
       component: () => import('@/views/settings/resetPassword'),
-      redirect: '/settings/resetPassword',
       meta: {
         id: 'resetPassword',
         title: '更改密码',

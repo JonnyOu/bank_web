@@ -26,7 +26,8 @@ const constRoutes = [
     name: 'index',
     component: () => import('@/views/index'),
     meta: {
-      title: '首页'
+      title: '首页',
+      menuIndex: 'index'
     }
   },
   {

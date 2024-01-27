@@ -1,13 +1,12 @@
 <script setup>
-import LayoutHeader from './components/LayoutHeader.vue';
-import LayoutContent from './components/LayoutContent.vue';
-import LayoutFooter from './components/LayoutFooter.vue';
+const route = useRoute();
+const menuIndex = ref(route.matched[0].meta.menuIndex);
 
 </script>
 
 <template>
   <a-layout>
-    <LayoutHeader />
+    <LayoutHeader  :menuIndex="menuIndex" />
     <LayoutContent />
     <LayoutFooter />
   </a-layout>
