@@ -1,6 +1,29 @@
 <script setup>
+const route = useRoute();
+const router = useRouter();
 const selectedKeys2 = ref(['1']);
 const openKeys = ref(['sub1']);
+
+
+watch(() => route.path, (newPath, oldPath) => {
+  console.log('route', route.matched[0].children);
+
+  // 需要重新渲染菜单的name
+  const applyMenuArr = ['accQuery', 'settings', 'transfer'];
+  const menuName = route.matched[0].name;
+  for (const item of applyMenu) {
+    if (item === menuName) {
+      applyMenu(route.matched[0].children);
+    }
+  }
+  
+})
+
+// 二级、三级菜单渲染
+const applyMenu = (menuData) => {
+  
+}
+
 </script>
 
 <template>
@@ -60,7 +83,13 @@ const openKeys = ref(['sub1']);
       </a-layout-sider>
       <!-- 展示内容 -->
       <a-layout-content :style="{ padding: '0 24px', minHeight: '280px' }">
-        <router-view></router-view>
+        <router-view v-slot="{ Component }">
+          <transition name="fade">
+            <keep-alive>
+              <component :is="Component" />
+            </keep-alive>
+          </transition>
+        </router-view>
       </a-layout-content>
     </a-layout>
   </a-layout-content>
