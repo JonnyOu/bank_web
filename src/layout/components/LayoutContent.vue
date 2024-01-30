@@ -3,25 +3,42 @@ const route = useRoute();
 const router = useRouter();
 const selectedKeys2 = ref(['1']);
 const openKeys = ref(['sub1']);
+const menu = ref([]);
 
 
 watch(() => route.path, (newPath, oldPath) => {
   console.log('route', route.matched[0].children);
 
-  // 需要重新渲染菜单的name
+  // 重新渲染菜单
   const applyMenuArr = ['accQuery', 'settings', 'transfer'];
   const menuName = route.matched[0].name;
-  for (const item of applyMenu) {
+  for (const item of applyMenuArr) {
     if (item === menuName) {
+      // menu.value = route.matched[0].children;
       applyMenu(route.matched[0].children);
     }
   }
-  
 })
 
 // 二级、三级菜单渲染
 const applyMenu = (menuData) => {
-  
+  menu.value = [];
+  for (const item of menuData) {
+    const secondItem = {};
+    secondItem.label = item.meta.title;
+    secondItem.key = item.meta.id;
+    if (item.children) {
+      const children = [];
+      for (const childrenItem of item.children) {
+        const thirdMenuItem = {};
+        thirdMenuItem.label = childrenItem.meta.title;
+        thirdMenuItem.key = childrenItem.meta.key;
+        children.push(thirdMenuItem);
+      }
+      secondItem.children = children;
+    }
+    menu.value.push(secondItem);
+  }
 }
 
 </script>
@@ -36,50 +53,14 @@ const applyMenu = (menuData) => {
     </a-breadcrumb>
     <!-- 左侧菜单 -->
     <a-layout style="height: 80vh; padding: 24px 0; background: #fff">
-      <a-layout-sider width="200" style="background: #fff">
+      <a-layout-sider width="200" style="background: #fff;">
         <a-menu
           v-model:selectedKeys="selectedKeys2"
           v-model:openKeys="openKeys"
           mode="inline"
           style="height: 100%"
-        >
-          <a-sub-menu key="sub1">
-            <template #title>
-              <span>
-                <!-- <user-outlined /> -->
-                subnav 1
-              </span>
-            </template>
-            <a-menu-item key="1">option1</a-menu-item>
-            <a-menu-item key="2">option2</a-menu-item>
-            <a-menu-item key="3">option3</a-menu-item>
-            <a-menu-item key="4">option4</a-menu-item>
-          </a-sub-menu>
-          <a-sub-menu key="sub2">
-            <template #title>
-              <span>
-                <!-- <laptop-outlined /> -->
-                subnav 2
-              </span>
-            </template>
-            <a-menu-item key="5">option5</a-menu-item>
-            <a-menu-item key="6">option6</a-menu-item>
-            <a-menu-item key="7">option7</a-menu-item>
-            <a-menu-item key="8">option8</a-menu-item>
-          </a-sub-menu>
-          <a-sub-menu key="sub3">
-            <template #title>
-              <span>
-                <!-- <notification-outlined /> -->
-                subnav 3
-              </span>
-            </template>
-            <a-menu-item key="9">option9</a-menu-item>
-            <a-menu-item key="10">option10</a-menu-item>
-            <a-menu-item key="11">option11</a-menu-item>
-            <a-menu-item key="12">option12</a-menu-item>
-          </a-sub-menu>
-        </a-menu>
+          :items="menu"
+        />
       </a-layout-sider>
       <!-- 展示内容 -->
       <a-layout-content :style="{ padding: '0 24px', minHeight: '280px' }">
