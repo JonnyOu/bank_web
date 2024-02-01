@@ -7,7 +7,10 @@ import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
 // 自动导入方法
-import AutoImport from 'unplugin-auto-import/vite';
+import autoImport from 'unplugin-auto-import/vite';
+
+// 导入eslint配置
+import eslintPlugin from 'vite-plugin-eslint';
 
 export default defineConfig(({ command, mode }) => {
 
@@ -31,7 +34,7 @@ export default defineConfig(({ command, mode }) => {
             }),
           ],
         }),
-        AutoImport({
+        autoImport({
           imports: [
             'vue',
             'vue-router',
@@ -42,6 +45,14 @@ export default defineConfig(({ command, mode }) => {
           ],
           dts: 'src/auto-import.d.ts'
         }),
+        eslintPlugin({
+          include: [
+            'src/**/*.js', 
+            'src/**/*.vue', 
+            'src/*.js', 
+            'src/*.vue'
+          ]
+        })
       ],
       resolve: {
         alias: {

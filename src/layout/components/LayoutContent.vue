@@ -14,7 +14,6 @@ watch(() => route.path, (newPath, oldPath) => {
   const menuName = route.matched[0].name;
   for (const item of applyMenuArr) {
     if (item === menuName) {
-      // menu.value = route.matched[0].children;
       applyMenu(route.matched[0].children);
     }
   }
@@ -41,11 +40,16 @@ const applyMenu = (menuData) => {
   }
 }
 
+// todo 二级、三级路由跳转
+// const jumpMenu = () => {
+        
+// }
+
 </script>
 
 <template>
   <a-layout-content style="padding: 0 50px">
-    <!-- 路径 -->
+    <!-- todo 路径 -->
     <a-breadcrumb style="margin: 16px 0">
       <a-breadcrumb-item>1</a-breadcrumb-item>
       <a-breadcrumb-item>2</a-breadcrumb-item>
