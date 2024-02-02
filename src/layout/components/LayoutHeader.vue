@@ -7,7 +7,7 @@ const props = defineProps({
     type: String,
     default: 'index'
   }
-})
+});
 
 const selectedMenuKey = ref([props.menuIndex]);
 const menuHead = [
@@ -31,12 +31,12 @@ const menuHead = [
     name: t('system.menu.settings'),
     path: '/settings'
   },
-]
+];
 
 const changeRoute = (item) => {
   router.push({ path: item.path });
   selectedMenuKey.value[0] = item.key;
-}
+};
 </script>
 
 <template>

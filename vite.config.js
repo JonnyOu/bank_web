@@ -43,7 +43,12 @@ export default defineConfig(({ command, mode }) => {
               'vue-i18n': ['createI18n', 'useI18n']
             }
           ],
-          dts: 'src/auto-import.d.ts'
+          dts: 'src/auto-import.d.ts',
+          eslintrc: {
+            enabled: true,
+            filepath: './.eslintrc-auto-import.json',
+            globalsPropValue: true
+          }
         }),
         eslintPlugin({
           include: [
@@ -51,7 +56,8 @@ export default defineConfig(({ command, mode }) => {
             'src/**/*.vue', 
             'src/*.js', 
             'src/*.vue'
-          ]
+          ],
+          cache: false
         })
       ],
       resolve: {
@@ -63,4 +69,4 @@ export default defineConfig(({ command, mode }) => {
       }
     },
   );
-})
+});

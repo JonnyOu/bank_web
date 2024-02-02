@@ -17,7 +17,7 @@ watch(() => route.path, (newPath, oldPath) => {
       applyMenu(route.matched[0].children);
     }
   }
-})
+});
 
 // 二级、三级菜单渲染
 const applyMenu = (menuData) => {
@@ -38,7 +38,7 @@ const applyMenu = (menuData) => {
     }
     menu.value.push(secondItem);
   }
-}
+};
 
 // todo 二级、三级路由跳转
 // const jumpMenu = () => {
