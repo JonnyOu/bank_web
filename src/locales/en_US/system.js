@@ -16,4 +16,4 @@ export default {
     name: '用戶名',
     password: '登錄密碼'
   }
-}
+};

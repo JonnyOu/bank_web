@@ -8,4 +8,4 @@ export default {
     recBank: '收款银行',
     recName: '收款名称'
   }
-}
+};

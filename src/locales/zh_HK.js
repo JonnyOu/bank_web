@@ -6,7 +6,7 @@ const getPathName = (path) => {
   const lastSlashIndex = path.lastIndexOf('/');
   const lastPointIndex = path.lastIndexOf('.');
   return path.slice(lastSlashIndex+1, lastPointIndex);
-}
+};
 
 Object.keys(hkModulesFiles).forEach((path) => {
   const pathName = getPathName(path);

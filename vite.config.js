@@ -39,9 +39,17 @@ export default defineConfig(({ command, mode }) => {
             'vue',
             'vue-router',
             '@vueuse/core',
+            'pinia',
             {
               'vue-i18n': ['createI18n', 'useI18n']
             }
+          ],
+          dirs: [
+            'src/components',
+            'src/views',
+            'src/layout',
+            'src/utils',
+            'src/store'
           ],
           dts: 'src/auto-import.d.ts',
           eslintrc: {

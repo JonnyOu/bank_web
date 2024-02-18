@@ -34,6 +34,8 @@ module.exports = {
     'vue/multi-word-component-names': 0,
     // 自动引入检查
     'no-undef': 1,
+    // 未使用的变量警告提示
+    'no-unused-vars': 1,
     // 缩进为2个space
     'indent': [
       'error',

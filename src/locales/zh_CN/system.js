@@ -34,4 +34,4 @@ export default {
     name: '用户名',
     password: '登录密码'
   }
-}
+};

@@ -14,6 +14,6 @@ const i18n = createI18n({
   globalInjection: true, //全局生效$t
   locale: 'zh_CN',       // 默认cn翻译
   messages               //ES6解构
-})
+});
 
 export default i18n;

@@ -6,9 +6,7 @@ const openKeys = ref(['sub1']);
 const menu = ref([]);
 
 
-watch(() => route.path, (newPath, oldPath) => {
-  console.log('route', route.matched[0].children);
-
+watch(() => route.path, () => {
   // 重新渲染菜单
   const applyMenuArr = ['accQuery', 'settings', 'transfer'];
   const menuName = route.matched[0].name;

@@ -10,7 +10,7 @@ const asyncRoutes = [
   accQueryRoute,
   settingsRoute,
   transferRoute
-]
+];
 
 // 配置公共路由
 const constRoutes = [
@@ -65,7 +65,7 @@ const constRoutes = [
       }
     ]
   },
-]
+];
 
 const { API_BASE_URL } = import.meta.env;
 const allRoutes = asyncRoutes.concat(constRoutes);
