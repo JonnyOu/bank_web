@@ -1,8 +1,16 @@
 <script setup>
-import { computed } from 'vue';
-
 const store_useCommonStore = useCommonStore();
-const selectedKey = computed(() => [store_useCommonStore.defaultSelectMenu]);
+const router = useRouter();
+const selectedKey = ref([]);
+
+watch(() => store_useCommonStore.defaultSelectMenu, () => {
+  selectedKey.value = [store_useCommonStore.defaultSelectMenu];
+});
+
+const changeMenu = (path) => {
+  selectedKey.value = [path];
+  router.push({ path });
+};
 
 </script>
 
@@ -19,10 +27,10 @@ const selectedKey = computed(() => [store_useCommonStore.defaultSelectMenu]);
       <a-layout-sider width="200" style="background: #fff;">
         <a-menu mode="inline" style="height: 100%" v-model:selectedKeys="selectedKey">
           <div v-for="route in store_useCommonStore.menu" :key="route.path">
-            <a-sub-menu v-if="route.children" :title="route.label">
-              <a-menu-item v-for="item in route.children" :key="item.path" :title="item.label">{{ item.label }}</a-menu-item>
+            <a-sub-menu v-if="route.children" :title="route.label" :key="route.children[0].path" @click="changeMenu(route.children[0].path)">
+              <a-menu-item v-for="item in route.children" :key="item.path" :title="item.label" @click.stop="changeMenu(item.path)">{{ item.label }}</a-menu-item>
             </a-sub-menu>
-            <a-menu-item v-else :title="route.label" :key="route.path">{{ route.label }}</a-menu-item>
+            <a-menu-item v-else :title="route.label" :key="route.path" @click="changeMenu(route.path)">{{ route.label }}</a-menu-item>
           </div>  
         </a-menu>
       </a-layout-sider>

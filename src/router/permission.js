@@ -12,8 +12,6 @@ router.beforeEach((to, from, next) => {
   // 获取默认选中菜单
   store_useCommonStore.defaultSelectMenu = getDefaultSelectMenu();
 
-  console.log('defaultSelectMenu', store_useCommonStore.defaultSelectMenu);
-
   next();
 });
 
@@ -53,9 +51,9 @@ const applyMenu = (menuData) => {
  */
 const getDefaultSelectMenu = () => {
   const item = menu.value[0];
-  if (!item.children) { // 没有三级菜单
-    return item.path;
-  } else { // 三级菜单
+  if (item && item.children) { // 三级菜单
     return item.children[0].path;
+  } else if (item) { // 二级菜单
+    return item.path;
   }
 };
