@@ -25,6 +25,7 @@ export default defineConfig(({ command, mode }) => {
       plugins: [
         vue(),
         Components({
+          // 自动导入dirs目录下的自定义vue组件，在项目中引用时不需要再使用import导入
           dirs: [
             'src/components', 'src/layout', 'src/views'
           ],
@@ -35,6 +36,7 @@ export default defineConfig(({ command, mode }) => {
           ],
         }),
         autoImport({
+          // 自动导入imports目录下的插件提供的对象
           imports: [
             'vue',
             'vue-router',
@@ -44,12 +46,12 @@ export default defineConfig(({ command, mode }) => {
               'vue-i18n': ['createI18n', 'useI18n']
             }
           ],
+          // 自动导入dirs目录下的js文件，在项目中引用时不需要再使用import导入
           dirs: [
-            'src/components',
-            'src/views',
-            'src/layout',
             'src/utils',
-            'src/store'
+            'src/store/**/',
+            'src/api',
+            'src/locales'
           ],
           dts: 'src/auto-import.d.ts',
           eslintrc: {

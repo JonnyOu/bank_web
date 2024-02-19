@@ -1,5 +1,6 @@
 <script setup>
 const store_useSelfBankOnLocalStore = useSelfBankOnLocalStore();
+const { title } = store_useSelfBankOnLocalStore;
 </script>
 
 <template>
@@ -8,7 +9,8 @@ const store_useSelfBankOnLocalStore = useSelfBankOnLocalStore();
     <br>
     <div class="text-6xl text-blue-600/100">tailwindcss test</div>
     <div>{{ store_useSelfBankOnLocalStore.info }}</div>
-  </div>  
+    <div>{{ title }}</div>
+  </div>
 </template>
 
 <style scoped>

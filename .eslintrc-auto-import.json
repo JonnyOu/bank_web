@@ -303,6 +303,12 @@
     "setActivePinia": true,
     "setMapStoreSuffix": true,
     "storeToRefs": true,
-    "store": true
+    "store": true,
+    "useFpsTransferStore": true,
+    "useSelfBankOnLocalStore": true,
+    "enUS": true,
+    "locales": true,
+    "zhCN": true,
+    "zhHK": true
   }
 }
