@@ -309,6 +309,17 @@
     "enUS": true,
     "locales": true,
     "zhCN": true,
-    "zhHK": true
+    "zhHK": true,
+    "useStore": true,
+    "useComStore": true,
+    "useCompoStore": true,
+    "useComponentStore": true,
+    "useComponenStore": true,
+    "useCStore": true,
+    "useCommonStore": true,
+    "accQueryRoute": true,
+    "router": true,
+    "settingsRoute": true,
+    "transferRoute": true
   }
 }

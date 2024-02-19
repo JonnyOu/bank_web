@@ -1,5 +1,5 @@
 export const useSelfBankOnLocalStore = defineStore({
-  id: 'useFpsTransferStore',
+  id: 'useSelfBankOnLocalStore',
   state: () => ({
     info: '本行转账info',
     title: 'xxxxxxx'

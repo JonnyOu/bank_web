@@ -50,8 +50,10 @@ export default defineConfig(({ command, mode }) => {
           dirs: [
             'src/utils',
             'src/store/**/',
+            'src/store',
             'src/api',
-            'src/locales'
+            'src/locales',
+            'src/router'
           ],
           dts: 'src/auto-import.d.ts',
           eslintrc: {

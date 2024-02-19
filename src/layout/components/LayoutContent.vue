@@ -1,47 +1,8 @@
 <script setup>
-const route = useRoute();
-const router = useRouter();
-const selectedKeys2 = ref(['1']);
-const openKeys = ref(['sub1']);
-const menu = ref([]);
+import { computed } from 'vue';
 
-
-watch(() => route.path, () => {
-  // 重新渲染菜单
-  const applyMenuArr = ['accQuery', 'settings', 'transfer'];
-  const menuName = route.matched[0].name;
-  for (const item of applyMenuArr) {
-    if (item === menuName) {
-      applyMenu(route.matched[0].children);
-    }
-  }
-});
-
-// 二级、三级菜单渲染
-const applyMenu = (menuData) => {
-  menu.value = [];
-  for (const item of menuData) {
-    const secondItem = {};
-    secondItem.label = item.meta.title;
-    secondItem.key = item.meta.id;
-    if (item.children) {
-      const children = [];
-      for (const childrenItem of item.children) {
-        const thirdMenuItem = {};
-        thirdMenuItem.label = childrenItem.meta.title;
-        thirdMenuItem.key = childrenItem.meta.key;
-        children.push(thirdMenuItem);
-      }
-      secondItem.children = children;
-    }
-    menu.value.push(secondItem);
-  }
-};
-
-// todo 二级、三级路由跳转
-// const jumpMenu = () => {
-        
-// }
+const store_useCommonStore = useCommonStore();
+const selectedKey = computed(() => [store_useCommonStore.defaultSelectMenu]);
 
 </script>
 
@@ -56,13 +17,14 @@ const applyMenu = (menuData) => {
     <!-- 左侧菜单 -->
     <a-layout style="height: 80vh; padding: 24px 0; background: #fff">
       <a-layout-sider width="200" style="background: #fff;">
-        <a-menu
-          v-model:selectedKeys="selectedKeys2"
-          v-model:openKeys="openKeys"
-          mode="inline"
-          style="height: 100%"
-          :items="menu"
-        />
+        <a-menu mode="inline" style="height: 100%" v-model:selectedKeys="selectedKey">
+          <div v-for="route in store_useCommonStore.menu" :key="route.path">
+            <a-sub-menu v-if="route.children" :title="route.label">
+              <a-menu-item v-for="item in route.children" :key="item.path" :title="item.label">{{ item.label }}</a-menu-item>
+            </a-sub-menu>
+            <a-menu-item v-else :title="route.label" :key="route.path">{{ route.label }}</a-menu-item>
+          </div>  
+        </a-menu>
       </a-layout-sider>
       <!-- 展示内容 -->
       <a-layout-content :style="{ padding: '0 24px', minHeight: '280px' }">
