@@ -6,6 +6,11 @@ const {
   requestTimeOut
 } = defaultConfig;
 
+// 错误处理
+const errorHandler = (error) => {
+  console.log('请求异常', error);
+};
+
 const request = axios.create({
   baseURL: '/',
   timeout: requestTimeOut,
@@ -17,17 +22,18 @@ const request = axios.create({
 
 // 请求拦截器
 request.interceptors.request.use(
-  (requestData) => {
-    console.log('requestData', requestData);
+  (config) => {
+    console.log('config', config);
+    return config;
   }, errorHandler);
 
 // 响应拦截器
 request.interceptors.response.use(
-  (responseData) => {
-    console.log('responseData', responseData);
+  (response) => {
+    console.log('responseData', response);
+    return response;
   }, errorHandler);
 
-// 错误处理
-const errorHandler = (error) => {
-  console.log('请求异常', error);
-};
+
+
+export default request;

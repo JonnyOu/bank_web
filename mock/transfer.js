@@ -6,7 +6,7 @@ const RSP_HEAD = {
 
 export default [
   {
-    url: 'test.do',
+    url: '/test.do',
     type: 'post',
     response(options) {
       console.log('options', options);

@@ -12,6 +12,9 @@ import autoImport from 'unplugin-auto-import/vite';
 // 导入eslint配置
 import eslintPlugin from 'vite-plugin-eslint';
 
+// 引入mock
+import { viteMockServe } from 'vite-plugin-mock';
+
 export default defineConfig(({ command, mode }) => {
 
   // 获取配置文件参数
@@ -24,6 +27,10 @@ export default defineConfig(({ command, mode }) => {
       base: env.APP_BASE_URL,
       plugins: [
         vue(),
+        viteMockServe({
+          mockPath: './mock', // mock文件存放位置
+          localEnable: env.APP_MODE_MOCK // mock开关
+        }), 
         Components({
           // 自动导入dirs目录下的自定义vue组件，在项目中引用时不需要再使用import导入
           dirs: [

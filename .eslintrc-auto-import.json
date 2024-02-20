@@ -321,6 +321,7 @@
     "router": true,
     "settingsRoute": true,
     "transferRoute": true,
-    "api_test": true
+    "api_test": true,
+    "request": true
   }
 }

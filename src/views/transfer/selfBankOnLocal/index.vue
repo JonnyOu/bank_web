@@ -1,6 +1,13 @@
 <script setup>
 const store_useSelfBankOnLocalStore = useSelfBankOnLocalStore();
-const { title } = store_useSelfBankOnLocalStore;
+const { title, test } = store_useSelfBankOnLocalStore;
+
+const getData = async () => {
+  const res = await test();
+  console.log('res', res);
+};
+getData();
+
 </script>
 
 <template>
