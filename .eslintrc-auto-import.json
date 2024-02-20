@@ -320,6 +320,7 @@
     "accQueryRoute": true,
     "router": true,
     "settingsRoute": true,
-    "transferRoute": true
+    "transferRoute": true,
+    "api_test": true
   }
 }

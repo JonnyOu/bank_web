@@ -8,6 +8,9 @@ export const useSelfBankOnLocalStore = defineStore({
 
   },
   actions: {
-
+    async test(params) {
+      const { data } = await api_test(params);
+      return data;
+    }
   }
 });
