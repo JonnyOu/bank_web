@@ -20,17 +20,18 @@ export default defineConfig(({ command, mode }) => {
   // 获取配置文件参数
   // loadEnv第三个参数，用于匹配配置文件中不以 VITE_ 开头的参数
   const env = loadEnv(mode, process.cwd(), '');
-  console.log('--------', env.APP_ENV_NAME, '--------');
+  console.log('--------', env.VITE_ENV_NAME, '--------');
   
   return Object.assign(
     {
-      base: env.APP_BASE_URL,
+      base: env.VITE_BASE_URL,
       plugins: [
         vue(),
         viteMockServe({
           mockPath: './mock', // mock文件存放位置
-          localEnable: env.APP_MODE_MOCK // mock开关
-        }), 
+          localEnabled: env.VITE_MODE_MOCK, // mock开关
+          prodEnabled: false, //生产环境下为false，这样就不会被打包到生产包中
+        }),
         Components({
           // 自动导入dirs目录下的自定义vue组件，在项目中引用时不需要再使用import导入
           dirs: [
@@ -85,6 +86,16 @@ export default defineConfig(({ command, mode }) => {
           '@': resolve(__dirname, 'src')
         },
         extensions: ['.js', '.vue']
+      },
+      server: { 
+        port: '3000', // 启动端口
+        proxy: { // 服务器代理
+          '/api': {
+            target: 'http://localhost:8010',
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/api/, ''),
+          },
+        },
       }
     },
   );

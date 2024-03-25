@@ -6,17 +6,15 @@ const RSP_HEAD = {
 
 export default [
   {
-    url: '/transfer/test.do',
+    url: '/login',
     type: 'post',
     response(options) {
       console.log('options', options);
       return {
         code: '200',
         msg: 'success',
-        RSP_HEAD,
-        RSP_BODY: {
-          status: '1',
-          text: 'greate!'
+        data: {
+          token: 'fa2e1c55595f7adf4bc3eb6b60f7489c'
         }
       };
     }

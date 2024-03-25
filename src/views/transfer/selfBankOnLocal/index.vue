@@ -6,7 +6,6 @@ const getData = async () => {
   const res = await test();
   console.log('res', res);
 };
-getData();
 
 </script>
 
@@ -17,6 +16,7 @@ getData();
     <div class="text-6xl text-blue-600/100">tailwindcss test</div>
     <div>{{ store_useSelfBankOnLocalStore.info }}</div>
     <div>{{ title }}</div>
+    <a-button type="primary" @click="getData()" class="text-[#000]">请求</a-button>
   </div>
 </template>
 

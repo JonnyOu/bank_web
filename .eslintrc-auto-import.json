@@ -322,6 +322,10 @@
     "settingsRoute": true,
     "transferRoute": true,
     "api_test": true,
-    "request": true
+    "request": true,
+    "api_login": true,
+    "login": true,
+    "uStore": true,
+    "useLoginStore": true
   }
 }

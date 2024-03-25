@@ -4,15 +4,23 @@ const menu = ref([]);
 
 // 全局前置守卫
 router.beforeEach((to, from, next) => {
-  const store_useCommonStore = useCommonStore();
-  // 持久化菜单信息
-  setMenu(to);
-  store_useCommonStore.menu = menu;
-  store_useCommonStore.path = to.path;
-  // 获取默认选中菜单
-  store_useCommonStore.defaultSelectMenu = getDefaultSelectMenu();
-
-  next();
+  if (to.path === '/login') {
+    next();
+  } else {
+    const token = localStorage.getItem('Authorization');
+    if (!token) {
+      next('/login');
+    } else {
+      const store_useCommonStore = useCommonStore();
+      // 持久化菜单信息
+      setMenu(to);
+      store_useCommonStore.menu = menu;
+      store_useCommonStore.path = to.path;
+      // 获取默认选中菜单
+      store_useCommonStore.defaultSelectMenu = getDefaultSelectMenu(); 
+      next();
+    }
+  }
 });
 
 // 二级、三级菜单渲染
