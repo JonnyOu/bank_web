@@ -6,16 +6,14 @@ const RSP_HEAD = {
 
 export default [
   {
-    url: '/user/login',
+    url: '/user/register',
     type: 'post',
     response(options) {
       console.log('options', options);
       return {
-        code: 200,
+        code: 20000,
         msg: 'success',
-        data: {
-          token: 'fa2e1c55595f7adf4bc3eb6b60f7489c'
-        }
+        data: {}
       };
     }
   }

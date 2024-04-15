@@ -1,7 +1,6 @@
 export const useLoginStore = defineStore({
   id: 'useLoginStore',
   state: () => ({
-    token: '', // token
   }),
   getters: {
 
@@ -9,7 +8,6 @@ export const useLoginStore = defineStore({
   actions: {
     async login(params) {
       const { data } = await api_login(params);
-
       return data;
     }
   }

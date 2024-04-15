@@ -326,6 +326,16 @@
     "api_login": true,
     "login": true,
     "uStore": true,
-    "useLoginStore": true
+    "useLoginStore": true,
+    "encrypt": true,
+    "loginEncrypt": true,
+    "useRegistStore": true,
+    "useRegisterStore": true,
+    "api_register": true,
+    "api_": true,
+    "api_sendSMS": true,
+    "api_sendS": true,
+    "api_sendSms": true,
+    "api_getPublicKeyIndex": true
   }
 }

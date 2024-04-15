@@ -1,6 +1,6 @@
 export async function api_login(data) {
   return request({
-    url: '/login',
+    url: '/user/login',
     method: 'post',
     data
   });

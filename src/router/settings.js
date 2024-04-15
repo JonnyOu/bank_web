@@ -1,4 +1,4 @@
-import Layout from '@/layout';
+const Layout = () => import('@/layout');
 
 export const settingsRoute = {
   path: '/settings',

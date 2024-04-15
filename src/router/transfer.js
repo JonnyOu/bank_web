@@ -1,4 +1,4 @@
-import Layout from '@/layout';
+const Layout = () => import('@/layout');
 import PageView from '@/layout/pageView';
 
 export const transferRoute = {

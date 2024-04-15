@@ -37,6 +37,12 @@ const changeRoute = (item) => {
   router.push({ path: item.path });
   selectedMenuKey.value[0] = item.key;
 };
+
+const logout = () => {
+  // 清空token
+  localStorage.removeItem('Authorization');
+  router.push({ path: '/login' });
+};
 </script>
 
 <template>
@@ -52,9 +58,14 @@ const changeRoute = (item) => {
           {{ item.name }}
         </a-menu-item>
       </a-menu>
+      <a-button type="link" class="logout" @click="logout">退出登录</a-button>
     </a-layout-header>
 </template>
 
 <style scoped>
-
+.logout {
+  position: absolute;
+  right: 5%;
+  top: 16px;
+}
 </style>

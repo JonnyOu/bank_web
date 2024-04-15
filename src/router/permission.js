@@ -1,10 +1,27 @@
 import router from '@/router';
+import defaultConfig from '@/config/index';
+
+const { unLoginPath } = defaultConfig;
+
 
 const menu = ref([]);
 
 // 全局前置守卫
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login') {
+  
+  // 子业务页面步骤赋值为0
+  const store_useCommonStore = useCommonStore();
+  store_useCommonStore.step = 0;
+
+  // 非登录路由，直接跳转
+  let unLogin = false;
+  for (const item of unLoginPath) {
+    if (item === to.path) {
+      unLogin = true;
+      break;
+    }
+  }
+  if (unLogin) {
     next();
   } else {
     const token = localStorage.getItem('Authorization');

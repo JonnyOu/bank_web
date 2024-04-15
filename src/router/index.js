@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import Layout from '@/layout';
+const Layout = () => import('@/layout');
 
 // 导入路由页面的配置
 import { accQueryRoute } from './accQuery.js';
@@ -39,6 +39,15 @@ const constRoutes = [
     }
   },
   {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/register'),
+    meta: {
+      title: '注册'
+    }
+  },
+  // 非登录错误
+  {
     path: '/error',
     name: 'error',
     component: () => import('@/views/error'),
@@ -46,6 +55,7 @@ const constRoutes = [
       title: '全局报错'
     }
   },
+  // 登录后错误
   {
     path: '/errorResult',
     name: 'errorResult',
