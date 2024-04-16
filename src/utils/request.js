@@ -1,6 +1,7 @@
 import axios from 'axios';
 import defaultConfig from '@/config/index';
 import router from '@/router';
+import { Modal } from 'ant-design-vue';
 
 const {
   contentType,
@@ -8,9 +9,24 @@ const {
   notErrorPage
 } = defaultConfig;
 
-// 错误处理
+/**
+ * 错误处理 
+ * http请求状态码不是200时进入此方法处理。
+ * 注意http状态码与系统设定的业务状态码不是同一个参数。
+ * 业务状态码在返回报文中，业务错误时，http状态码可以是200。业务错误统一处理，在响应拦截器设置。
+ */
 const errorHandler = (error) => {
-  console.log('请求异常', error);
+  const response = error.response;
+  if (response.data.code === 50003) { // 用户登录信息已失效，需重新登录
+    Modal.warning({
+      title: '登录信息已失效，请重新登录',
+      onOk: () => {
+        router.push({ path: '/login' });
+      },
+      okText: '确认'
+    });
+  }
+
 };
 
 const instance = axios.create({
@@ -43,7 +59,6 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use(
   (response) => {
-
     // 统一处理，如果code不是20000，且不在自行错误处理数组中，默认跳转到错误页
     const resCode = response.data.code;
     const reqUrl = response.request.responseURL.split('api');
@@ -60,7 +75,7 @@ instance.interceptors.response.use(
       if (!flag) {
         // 根据登录状态去到不同错误页
         const token = localStorage.getItem('Authorization');
-        if (token && resCode !== 50003) {
+        if (token) {
           router.push({ path: '/errorResult' });
         } else {
           router.push({ path: '/error' });

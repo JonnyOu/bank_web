@@ -8,7 +8,6 @@ const getPhone = async () => {
   const res = await getUserPhone();
   phone.value = res.data.phone;
 };
-getPhone();
 
 </script>
 
@@ -16,6 +15,9 @@ getPhone();
   <div>
     电子渠道手机号服务 <br>
     用户手机号：{{ phone }}
+    <div>
+      <a-button type="primary" @click="getPhone">获取手机号码</a-button>
+    </div>
   </div>  
 </template>
 
