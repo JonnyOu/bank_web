@@ -15,6 +15,7 @@ import Index from './layout/index.vue';
 
 <style scoped>
 @media (prefers-color-scheme: dark) {
+
   :deep(.ant-form-item-label > label) {
     color: #fff;
   }

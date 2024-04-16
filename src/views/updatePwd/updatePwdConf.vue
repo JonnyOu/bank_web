@@ -1,0 +1,177 @@
+/*
+ * @Author: JonnyOu 
+ * @Date: 2024-04-16 19:07:04 
+ * @Last Modified by: JonnyOu
+ * @Last Modified time: 2024-04-16 19:18:41
+ * @Description:  
+ */
+<script setup>
+import { message } from 'ant-design-vue';
+const store_useUpdatePwdStore = useUpdatePwdStore();
+const store_useCommonStore = useCommonStore();
+const { updatePwdResult } = store_useUpdatePwdStore;
+const { sendSms } = store_useCommonStore;
+
+const emit = defineEmits(['jump']);
+
+const formState = reactive({
+  phone: '',
+  smsCode: '',
+});
+
+// 短信编号
+const smsNo = ref('');
+// 发送短信按钮文字
+const smsText = ref('发送验证码');
+// 发送短信按钮状态
+const smsStatus = ref(false);
+// 长度限制
+const phoneMaxLength = 11;
+const smsCodeMaxLength = 6;
+
+const onFinish = async () => {
+  const param = {
+    'phone': formState.phone,
+    'smsCode': formState.smsCode,
+  };
+  const res = await updatePwdResult(param);
+  // 更改密码成功，去到结果页
+  if (res.code === 20000) {
+    emit('jump', 2);
+  } else {
+    message.error(res.message);
+  }
+};
+
+/**
+ * 60s倒计时
+ */
+const countDown = (time) => {
+  if (time > 0) {
+    smsText.value = `${time}秒`;
+    smsStatus.value = true;
+    time--;
+    setTimeout(() => {
+      countDown(time);
+    }, 1000);
+  } else {
+    smsText.value = '发送验证码';
+    smsStatus.value = false;
+  }
+};
+
+const sendCode = async () => {
+  if (formState.phone && formState.phone.length === 11) {
+    // 60s后可再次点击发送短信
+    countDown(60);
+    const param = {
+      phone: formState.phone
+    };
+    const res = await sendSms(param);
+    if (res.code !== 20000) {
+      message.error('短信发送失败');
+    } else {
+      message.success('短信发生成功，验证码有效时间为100秒。');
+      smsNo.value = res.data.smsNo;
+    }
+  } else {
+    message.info('请输入合法手机号码！');
+  }
+};
+
+const phoneValidator = async (_rule, value) => {
+  if (value === '') {
+    return ;
+  } else if (value.length !== 11) {
+    return Promise.reject('请输入合法手机号码！');
+  }
+  return Promise.resolve();
+};
+
+const smsCodeValidator = async (_rule, value) => {
+  if (value === '') {
+    return ;
+  } else if (value.length !== 6) {
+    return Promise.reject('请输入合法短信验证码！');
+  }
+  return Promise.resolve();
+};
+
+const rules = {
+  phone: [
+    {
+      required: true,
+      message: '请输入手机号码'
+    },
+    {
+      trigger: 'blur',
+      validator: phoneValidator
+    }
+  ],
+  smsCode: [
+    {
+      required: true,
+      message: '请输入短信验证码'
+    },
+    {
+      trigger: 'blur',
+      validator: smsCodeValidator
+    }
+  ]
+};
+
+</script>
+
+<template>
+  <div class="login">
+    <a-form
+      :model="formState"
+      name="basic"
+      :label-col="{ span: 8 }"
+      :wrapper-col="{ span: 16 }"
+      autocomplete="off"
+      @finish="onFinish"
+      class="register-form"
+      :rules="rules"
+    >
+
+      <a-form-item
+        label="手机号码"
+        name="phone"
+      >
+        <a-input v-model:value="formState.phone" :maxlength="phoneMaxLength"/>
+      </a-form-item>
+
+      <a-form-item
+        label="短信验证码"
+        name="smsCode"
+      >
+        <a-input-group compact>
+          <a-input v-model:value="formState.smsCode" style="width: calc(100% - 200px)" :maxlength="smsCodeMaxLength"/>
+          <a-button type="primary" @click="sendCode" :disabled="smsStatus">{{ smsText }}</a-button>
+        </a-input-group>
+        <div v-if="smsNo">短信编号：{{ smsNo }}</div>
+      </a-form-item>
+
+      <a-form-item :wrapper-col="{ offset: 8, span: 16 }" class="text-center">
+        <a-button type="primary" html-type="submit">确认</a-button>
+      </a-form-item>
+    </a-form>
+  </div>
+
+</template>
+
+<style scoped>
+.login {
+  width: 60%;
+  margin: 30px auto;
+  color: white;
+}
+.register-form {
+  position: relative;
+  left: -15%;
+  text-align: left;
+}
+</style>
+
+

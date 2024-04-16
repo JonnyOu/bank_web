@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    2: typeof import('./src/views/updatePwd/updatePwdInput copy 2.vue')['default']
     ABreadcrumb: typeof import('ant-design-vue/es')['Breadcrumb']
     ABreadcrumbItem: typeof import('ant-design-vue/es')['BreadcrumbItem']
     AButton: typeof import('ant-design-vue/es')['Button']
@@ -26,7 +27,7 @@ declare module 'vue' {
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
-    copy: typeof import('./src/views/regist/registIndex copy.vue')['default']
+    copy: typeof import('./src/views/updatePwd/updatePwdInput copy.vue')['default']
     Error: typeof import('./src/views/error/index.vue')['default']
     FpsRegister: typeof import('./src/views/transfer/fps/fpsRegister/index.vue')['default']
     FpsTransfer: typeof import('./src/views/transfer/fps/fpsTransfer/index.vue')['default']
@@ -51,5 +52,9 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SelfBankOnLocal: typeof import('./src/views/transfer/selfBankOnLocal/index.vue')['default']
     TransferRecord: typeof import('./src/views/accQuery/transferRecord/index.vue')['default']
+    UpdatePwd: typeof import('./src/views/updatePwd/index.vue')['default']
+    UpdatePwdConf: typeof import('./src/views/updatePwd/updatePwdConf.vue')['default']
+    UpdatePwdInput: typeof import('./src/views/updatePwd/updatePwdInput.vue')['default']
+    UpdatePwdResult: typeof import('./src/views/updatePwd/updatePwdResult.vue')['default']
   }
 }

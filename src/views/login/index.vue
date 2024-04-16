@@ -48,6 +48,11 @@ const onFinishFailed = errorInfo => {
 const register = () => {
   router.push({ path: '/register' });
 };
+
+// 忘记密码
+const forgetPwd = () => {
+  router.push({ path: '/updatePwd' });
+};
 </script>
 
 <template>

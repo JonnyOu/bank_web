@@ -46,6 +46,14 @@ const constRoutes = [
       title: '注册'
     }
   },
+  {
+    path: '/updatePwd',
+    name: 'updatePwd',
+    component: () => import('@/views/updatePwd'),
+    meta: {
+      title: '忘记密码'
+    }
+  },
   // 非登录错误
   {
     path: '/error',

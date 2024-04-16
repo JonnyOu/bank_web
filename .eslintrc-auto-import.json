@@ -338,6 +338,11 @@
     "api_sendSms": true,
     "api_getPublicKeyIndex": true,
     "api_getUserPhone": true,
-    "usePhoneServiceStore": true
+    "usePhoneServiceStore": true,
+    "api_up": true,
+    "api_update": true,
+    "api_updatePwdConf": true,
+    "api_updatePwdResult": true,
+    "useUpdatePwdStore": true
   }
 }
