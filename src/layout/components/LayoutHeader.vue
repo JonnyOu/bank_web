@@ -1,4 +1,5 @@
 <script setup>
+import Cookies from 'js-cookie';
 const router = useRouter();
 const { t } = useI18n();
 

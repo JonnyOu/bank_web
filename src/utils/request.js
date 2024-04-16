@@ -16,6 +16,7 @@ const errorHandler = (error) => {
 const instance = axios.create({
   baseURL:  defaultConfig.baseApi,
   timeout: requestTimeOut,
+  withCredentials: true, // 发送cookie
   headers: {
     'Content-Type': contentType,
   }

@@ -336,6 +336,8 @@
     "api_sendSMS": true,
     "api_sendS": true,
     "api_sendSms": true,
-    "api_getPublicKeyIndex": true
+    "api_getPublicKeyIndex": true,
+    "api_getUserPhone": true,
+    "usePhoneServiceStore": true
   }
 }
