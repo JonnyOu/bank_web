@@ -16,8 +16,9 @@ const {
  * 业务状态码在返回报文中，业务错误时，http状态码可以是200。业务错误统一处理，在响应拦截器设置。
  */
 const errorHandler = (error) => {
+  console.log('error', error);
   const response = error.response;
-  if (response.data.code === 50003) { // 用户登录信息已失效，需重新登录
+  if (response.data.code === 50105) { // 用户登录信息已失效，需重新登录
     Modal.warning({
       title: '登录信息已失效，请重新登录',
       onOk: () => {
@@ -25,6 +26,8 @@ const errorHandler = (error) => {
       },
       okText: '确认'
     });
+  } else {// 系统级别错误全部跳转到错误页
+    router.push({ path: '/error' });
   }
 
 };
