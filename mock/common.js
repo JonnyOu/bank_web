@@ -32,5 +32,23 @@ export default [
         }
       };
     }
+  },
+  {
+    url: '/uploadFile',
+    type: 'post',
+    response(options) {
+      console.log('options', options);
+      return {
+        code: 20000,
+        msg: 'success',
+        data: {
+          uid: '-1',
+          name: 'xxx.png',
+          status: 'done',
+          url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+          thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        }
+      };
+    }
   }
 ];

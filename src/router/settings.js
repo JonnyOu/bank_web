@@ -34,6 +34,17 @@ export const settingsRoute = {
         titleI18nKey: 'menu.resetPassword',
         icon: 'apps-line',
       },
+    },
+    {
+      path: '/settings/fileOperate',
+      name: 'fileOperate',
+      component: () => import('@/views/settings/fileOperate'),
+      meta: {
+        id: 'fileOperate',
+        title: '文件上传/下载',
+        titleI18nKey: 'menu.fileOperate',
+        icon: 'apps-line',
+      },
     }
   ]
 };

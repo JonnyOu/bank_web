@@ -343,6 +343,8 @@
     "api_update": true,
     "api_updatePwdConf": true,
     "api_updatePwdResult": true,
-    "useUpdatePwdStore": true
+    "useUpdatePwdStore": true,
+    "api_uploadFile": true,
+    "api_uploadFileMul": true
   }
 }

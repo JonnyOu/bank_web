@@ -21,6 +21,8 @@ declare global {
   const api_update: typeof import('./api/updatePwd.js')['api_update']
   const api_updatePwdConf: typeof import('./api/updatePwd.js')['api_updatePwdConf']
   const api_updatePwdResult: typeof import('./api/updatePwd.js')['api_updatePwdResult']
+  const api_uploadFile: typeof import('./api/commonApi.js')['api_uploadFile']
+  const api_uploadFileMul: typeof import('./api/commonApi.js')['api_uploadFileMul']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const computed: typeof import('vue')['computed']

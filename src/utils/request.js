@@ -47,8 +47,8 @@ instance.interceptors.request.use(
     // 请求时携带将token放进请求头Authorization，用户后端校验用户登录
     config.headers.Authorization = localStorage.getItem('Authorization');
 
-    // 将上送参数data转换为FormData格式，使得后端直接取出字段
-    if (config.data) {
+    // 将上送参数data转换为FormData格式，使得后端直接取出字段，如果本身是FormData，则不需转换
+    if (config.data && Object.prototype.toString.call(config.data) !== '[object FormData]') {
       const params = new FormData();
       Object.keys(config.data).forEach((key) => {
         params.append(key, config.data[key]);

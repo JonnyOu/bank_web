@@ -24,5 +24,15 @@ export const useCommonStore = defineStore({
       const { data } = await api_getPublicKeyIndex();
       return data;
     },
+    // 上传文件测试
+    async uploadFile(params) {
+      const { data } = await api_uploadFile(params);
+      return data;
+    },
+    // 上传文件测试
+    async uploadFileMul(params) {
+      const { data } = await api_uploadFileMul(params);
+      return data;
+    },
   }
 });

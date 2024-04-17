@@ -15,7 +15,8 @@ export default {
 
     settings: '设置中心',
     phoneService: '电子渠道手机号服务',
-    resetPassword: '更改密码'
+    resetPassword: '更改密码',
+    fileOperate: '文件上传/下载'
   },
   index: {
     allAcc: '账户总览',
